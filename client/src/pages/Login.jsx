@@ -1,15 +1,16 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import Header from '../components/Header/Header';
+import todoLogo from '../images/todoLogo.png';// src Image: https://images-na.ssl-images-amazon.com/images/I/41da3NERJ4L.png
 
 const Login = () => (
   <div>
-    <Header />
+    <img id="todo-logo" src={todoLogo} alt="To Do Logo" />
+    <h1>Lista de Tarefas da empresa</h1>
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email: </Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">We&apos;ll never share your email with anyone else.</Form.Text>
+        <Form.Text className="text-muted">Nunca forneça seu email a ninguém.</Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
