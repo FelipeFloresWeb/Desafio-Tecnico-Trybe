@@ -1,23 +1,36 @@
-import PostTask from '../models/postTask.js'
+import PostUser from '../models/postUser.js'
 
-export const getTasks = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
-    const getTasks = await PostTask.find();
+    const getUsers = await PostUser.find();
 
-    res.status(200).json(getTasks);
+    res.status(200).json(getUsers);
   } catch (error) {
     res.status(404).json({message: error.message});
   }
 };
 
-export const createTask = async (req, res) => {
+export const createUser = async (req, res) => {
   const post = req.body
 
-  const newTask = new PostTask(post)
+  const newUser = new PostUser(post)
   try {
-    await newTask.save();
+    await newUser.save();
 
     res.status(201).json(newPost);
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
+};
+
+export const loginUser = async (req, res) => {
+  const { password, email } = req.body
+  try {
+    const user = await PostUser.findOne({password, email}).exec()
+    console.log(user);
+    if (!user) return res.status(404).json({message: 'Usuário não Encontrado'});
+
+    res.status(201).json(user);
   } catch (error) {
     res.status(409).json({message: error.message});
   }

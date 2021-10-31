@@ -3,13 +3,10 @@ import { Form, Button } from 'react-bootstrap';
 import { useValidator } from 'react-joi'; // src: https://www.npmjs.com/package/react-joi
 import todoLogo from '../images/todoLogo.png';// src Image: https://images-na.ssl-images-amazon.com/images/I/41da3NERJ4L.png
 import schema from '../utils/validations';
+import { login } from '../services/api';
 
 const Login = () => {
-  // const [formState, setFormState] = useState({
-  //   email: '',
-  //   password: '',
-  // });
-  // const [disabled, setDisable] = useState(true);
+  // const [haveAccount, setHaveAcoount] = useState(false);
 
   const {
     state, setData, setExplicitField, validate,
@@ -25,21 +22,7 @@ const Login = () => {
     },
   });
 
-  const checkInputs = () => {
-
-    JSON.parse(state, null, 2)
-  //   const { error } = schema.validate(formState);
-  // const { email, password } = formState;
-  // const inputEmail = schema.validate;
-  // const inputPassword = schema.password.valid(password);
-  //   if (error) {
-  //     setDisable(true);
-  //   }
-  //   setDisable(false);
-  };
-
   const updateEmail = (e) => {
-    // react < v17
     e.persist();
     setData((old) => ({
       ...old,
@@ -48,7 +31,6 @@ const Login = () => {
   };
 
   const updatePassword = (e) => {
-    // react < v17
     e.persist();
     setData((old) => ({
       ...old,
@@ -56,7 +38,14 @@ const Login = () => {
     }));
   };
 
-  // useEffect(() => { checkInputs(); }, [formState]);
+  const checkInputs = async () => {
+    const data = state.$data;
+    validate();
+    const loginUser = await login(data);
+    if (loginUser) return window.alert('user not found');
+
+    return window.alert('user found');
+  };
 
   return (
     <div>
@@ -79,13 +68,10 @@ const Login = () => {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
-        <Button disabled={useValidator.name} onClick={validate} variant="primary" type="button">
+        <Button onClick={checkInputs} variant="primary" type="button">
           Submit
         </Button>
       </Form>
-      <code>
-        <pre>{JSON.parse(state, null, 2)}</pre>
-      </code>
     </div>
   );
 };
