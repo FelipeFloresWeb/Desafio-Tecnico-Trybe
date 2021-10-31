@@ -1,6 +1,6 @@
 import PostTask from '../models/postTask.js'
 
-export const getPost = async (req, res) => {
+export const getTasks = async (req, res) => {
   try {
     const getTasks = await PostTask.find();
 
@@ -10,7 +10,7 @@ export const getPost = async (req, res) => {
   }
 };
 
-export const createPost = async (req, res) => {
+export const createTask = async (req, res) => {
   const post = req.body
 
   const newTask = new PostTask(post)

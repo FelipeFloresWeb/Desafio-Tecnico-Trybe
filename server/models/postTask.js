@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
+import pkg from 'mongoose';
 
 const postSchema = mongoose.Schema({
   titulo: String,
   descricao: String,
-  criador: String,
+  criador: {
+    type: pkg.ObjectId,
+    ref: 'PostUser',
+  },
   dataDeCriacao: {
     type: Date,
     default: new Date()

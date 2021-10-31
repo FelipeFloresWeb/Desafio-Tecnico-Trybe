@@ -1,30 +1,93 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useValidator } from 'react-joi'; // src: https://www.npmjs.com/package/react-joi
 import todoLogo from '../images/todoLogo.png';// src Image: https://images-na.ssl-images-amazon.com/images/I/41da3NERJ4L.png
+import schema from '../utils/validations';
 
-const Login = () => (
-  <div>
-    <img id="todo-logo" src={todoLogo} alt="To Do Logo" />
-    <h1>Lista de Tarefas da empresa</h1>
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email: </Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">Nunca forneça seu email a ninguém.</Form.Text>
-      </Form.Group>
+const Login = () => {
+  // const [formState, setFormState] = useState({
+  //   email: '',
+  //   password: '',
+  // });
+  // const [disabled, setDisable] = useState(true);
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Senha: </Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="button">
-        Submit
-      </Button>
-    </Form>
-  </div>
-);
+  const {
+    state, setData, setExplicitField, validate,
+  } = useValidator({
+    initialData: {
+      email: null,
+      password: null,
+    },
+    schema,
+    explicitCheck: {
+      email: false,
+      password: false,
+    },
+  });
+
+  const checkInputs = () => {
+
+    JSON.parse(state, null, 2)
+  //   const { error } = schema.validate(formState);
+  // const { email, password } = formState;
+  // const inputEmail = schema.validate;
+  // const inputPassword = schema.password.valid(password);
+  //   if (error) {
+  //     setDisable(true);
+  //   }
+  //   setDisable(false);
+  };
+
+  const updateEmail = (e) => {
+    // react < v17
+    e.persist();
+    setData((old) => ({
+      ...old,
+      email: e.target.value,
+    }));
+  };
+
+  const updatePassword = (e) => {
+    // react < v17
+    e.persist();
+    setData((old) => ({
+      ...old,
+      password: e.target.value,
+    }));
+  };
+
+  // useEffect(() => { checkInputs(); }, [formState]);
+
+  return (
+    <div>
+      <img id="todo-logo" src={todoLogo} alt="To Do Logo" />
+      <h1>Lista de Tarefas da empresa</h1>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email: </Form.Label>
+          <Form.Control onChange={updateEmail} onBlur={() => setExplicitField('email', true)} type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">Nunca forneça seu email a ninguém.</Form.Text>
+        </Form.Group>
+        {state.$errors.email.map((data) => data.$message).join(',')}
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Senha: </Form.Label>
+          <Form.Control onChange={updatePassword} onBlur={() => setExplicitField('password', true)} type="password" placeholder="Password" />
+        </Form.Group>
+        {state.$errors.password.map((data) => data.$message).join(',')}
+
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Button disabled={useValidator.name} onClick={validate} variant="primary" type="button">
+          Submit
+        </Button>
+      </Form>
+      <code>
+        <pre>{JSON.parse(state, null, 2)}</pre>
+      </code>
+    </div>
+  );
+};
 
 export default Login;

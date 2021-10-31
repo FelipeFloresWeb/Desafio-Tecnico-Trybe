@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { getPost, createPost } from './controllers/get.js'
+import { getTasks, createTask } from './controllers/userController.js'
 config();
 
 const app = express();
@@ -14,8 +14,8 @@ app.use(bodyParser.json({limit: '30mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}));
 app.use(cors());
 
-app.get('/', getPost)
-app.post('/', createPost)
+app.get('/', getTasks)
+app.post('/', createTask)
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 
