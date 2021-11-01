@@ -1,6 +1,7 @@
 import PostTask from '../models/postTask.js'
 
-export const getPost = async (req, res) => {
+export const getTasks = async (req, res) => {
+  // res.redirect(`https://localhost:${process.env.PORT}/login`);
   try {
     const getTasks = await PostTask.find();
 
@@ -10,14 +11,15 @@ export const getPost = async (req, res) => {
   }
 };
 
-export const createPost = async (req, res) => {
+export const createTask = async (req, res) => {
   const post = req.body
 
   const newTask = new PostTask(post)
+  console.log(post, newTask);
   try {
     await newTask.save();
 
-    res.status(201).json(newPost);
+    res.status(201).json(newTask);
   } catch (error) {
     res.status(409).json({message: error.message});
   }

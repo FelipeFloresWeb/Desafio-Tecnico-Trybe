@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
-const postSchema = mongoose.Schema({
+// src: https://mongoosejs.com/docs/populate.html
+const taskSchema = mongoose.Schema({
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'PostUser' },
   titulo: String,
   descricao: String,
-  criador: String,
   dataDeCriacao: {
     type: Date,
     default: new Date()
@@ -18,6 +19,6 @@ const postSchema = mongoose.Schema({
   }
 });
 
-const PostTask = mongoose.model('PostTask', postSchema);
+const TaskSchema = mongoose.model('taskSchema', taskSchema);
 
-export default PostTask;
+export default TaskSchema;
