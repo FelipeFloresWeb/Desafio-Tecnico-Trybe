@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Header = (props) => {
-  const { email } = props;
-  console.log(props);
+  const { name } = props;
   return (
     <div>
       <h1>
         Bem Vindo:
-        {email}
+        {` ${name}`}
       </h1>
       <h2>Aqui estão suas tarefas:</h2>
     </div>
