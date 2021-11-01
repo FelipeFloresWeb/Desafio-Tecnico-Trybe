@@ -14,7 +14,9 @@ const postUser = mongoose.Schema({
     ref: 'taskSchema',
     default: null,
   }],
-});
+},
+// https://stackoverflow.com/questions/13699784/mongoose-v-property-hide
+{ versionKey: false });
 
 const PostUser = mongoose.model('PostUser', postUser);
 

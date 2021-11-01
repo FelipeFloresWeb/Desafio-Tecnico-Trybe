@@ -18,7 +18,6 @@ export const createUser = async (req, res) => {
   try {
     const getUser = await PostUser.findOne({ email });
 
-    console.log('getuser =', getUser, 'newuser=', newUser);
     if (getUser) return res.status(404).json({message: 'usuario já cadastrado'});
     await newUser.save();
     res.status(201).json(getUser);
@@ -30,8 +29,7 @@ export const createUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { password, email } = req.body
   try {
-    const user = await PostUser.findOne({senha: password, email}).exec()
-    console.log(user);
+    const user = await PostUser.findOne({senha: password, email});
     if (!user) return res.status(404).json({message: 'Usuário não Encontrado'});
 
     res.status(201).json(user);
