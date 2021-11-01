@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// src: https://mongoosejs.com/docs/populate.html
 const postUser = mongoose.Schema({
   nome: String,
   email: String,
@@ -10,7 +11,8 @@ const postUser = mongoose.Schema({
   },
   tasks: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'PostTask',
+    ref: 'taskSchema',
+    default: null,
   }],
 });
 
