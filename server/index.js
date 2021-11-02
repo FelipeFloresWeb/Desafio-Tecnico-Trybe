@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { getTasks, addTask, deleteTask } from './controllers/taskController.js'
+import { getTasks, getAllTasks, addTask, deleteTask } from './controllers/taskController.js'
 import { createUser, getUsers, loginUser } from './controllers/userController.js'
 config();
 
@@ -24,6 +24,7 @@ app.delete('/delete/:id', deleteTask);
 
 //para vizualizar o banco
 app.get('/create', getUsers);
+app.get('/allTasks', getAllTasks);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 

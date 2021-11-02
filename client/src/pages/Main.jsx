@@ -48,7 +48,7 @@ const Main = (props) => {
   const removeTask = (taskId) => {
     setUser((old) => ({
       ...old,
-      tarefas: user.tarefas.filter((task) => task._id !== taskId),
+      tarefas: user.tarefas.filter((task) => task.id !== taskId),
     }));
   };
 
