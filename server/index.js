@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { getTasks, addTask } from './controllers/taskController.js'
+import { getTasks, addTask, deleteTask } from './controllers/taskController.js'
 import { createUser, getUsers, loginUser } from './controllers/userController.js'
 config();
 
@@ -20,6 +20,7 @@ app.post('/tasks', getTasks);
 app.post('/login', loginUser);
 app.post('/create', createUser);
 app.post('/addTask', addTask);
+app.delete('/delete', deleteTask);
 
 //para vizualizar o banco
 app.get('/create', getUsers);

@@ -21,3 +21,13 @@ export const addTask = async (req, res) => {
     res.status(409).json({message: error.message});
   }
 };
+
+export const deleteTask = async (req, res) => {
+  const { id } = req.body;
+  try {
+    await PostTask.deleteOne({_id: id });
+    res.status(200).json({delete: true});
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
+};
