@@ -6,7 +6,12 @@ import {
 import { addTask } from '../../services/api';
 
 const TaskForm = (props) => {
-  const { id, email, addTasks } = props;
+  const {
+    id,
+    email,
+    addTasks,
+    addTaskForm,
+  } = props;
   const inputTitle = useRef(null);
   const inputDescription = useRef(null);
   const inputPriority = useRef(null);
@@ -20,13 +25,14 @@ const TaskForm = (props) => {
       prioridade: inputPriority.current.value,
     });
     const { _id } = data;
-    return addTasks({
+    addTasks({
       id: _id,
       email,
       nome: inputTitle.current.value,
       descricao: inputDescription.current.value,
       prioridade: inputPriority.current.value,
     });
+    return addTaskForm();
   };
 
   return (
@@ -74,6 +80,7 @@ const TaskForm = (props) => {
 TaskForm.propTypes = {
   email: PropTypes.string,
   addTasks: PropTypes.func,
+  addTaskForm: PropTypes.func,
 }.isRequired;
 
 export default TaskForm;

@@ -59,7 +59,15 @@ const Main = (props) => {
       <Button onClick={addTaskForm} variant="primary" type="button">
         Adicionar nova tarefa
       </Button>
-      {addTask ? <TaskForm addTasks={addTasks} id={id} email={email} /> : <div />}
+      {addTask
+        ? (
+          <TaskForm
+            addTaskForm={addTaskForm}
+            addTasks={addTasks}
+            id={id}
+            email={email}
+          />
+        ) : <div />}
       <Tasks removeTask={removeTask} tasks={user.tarefas} />
     </div>
   );
