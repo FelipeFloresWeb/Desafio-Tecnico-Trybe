@@ -9,7 +9,7 @@ const postUser = mongoose.Schema({
     type: Date,
     default: new Date()
   },
-  tasks: [{
+  tarefas: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'taskSchema',
     default: null,

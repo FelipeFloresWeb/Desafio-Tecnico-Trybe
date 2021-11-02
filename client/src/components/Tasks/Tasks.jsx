@@ -9,12 +9,12 @@ const Tasks = (props) => {
       {tasks.length < 1
         ? <h1>Parece que voce não possui nenhuma tarefa pendente :)</h1>
         : tasks.map((task) => (
-          <Card key={task.nome}>
-            <Card.Header as="h5">Primeira Tarefa</Card.Header>
+          <Card key={`${task.id} - ${task.descricao}`}>
+            <Card.Header as="h5">{`Prioridade: ${task.prioridade.toUpperCase()}`}</Card.Header>
             <Card.Body>
-              <Card.Title>Correr</Card.Title>
+              <Card.Title>{`${task.nome}`}</Card.Title>
               <Card.Text>
-                7h as 7:30hrs
+                {`${task.descricao}`}
               </Card.Text>
               <Button variant="primary">Finalizar Tarefa</Button>
             </Card.Body>

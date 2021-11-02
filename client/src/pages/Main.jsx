@@ -5,38 +5,49 @@ import { Button } from 'react-bootstrap';
 import Header from '../components/Header/Header';
 import Tasks from '../components/Tasks/Tasks';
 import { getTasks } from '../services/api';
-// this.props.location.state
+import TaskForm from '../components/TaskForm/TaskForm';
+
 const Main = (props) => {
-  const { location: { state: { email } } } = props;
+  const { location: { state: { email, id, tasks } } } = props;
+  const [addTask, setAddTask] = useState(false);
   const [user, setUser] = useState({
+    userId: id,
     nome: '',
     email,
-    tarefas: [],
+    tarefas: tasks,
   });
 
   useEffect(() => {
     const mount = async () => {
-      const { data: { nome, tasks } } = await getTasks(email);
+      const { data } = await getTasks(id);
       setUser((old) => ({
         ...old,
-        nome,
-        tarefas: tasks,
+        nome: data.user.nome,
+        tarefas: data.tasks,
       }));
     };
     mount();
   }, []);
 
-  const addNewTask = () => {
-    console.log('nova função');
+  const addTaskForm = async () => {
+    setAddTask(!addTask);
+  };
+
+  const addTasks = async (tarefas) => {
+    await setUser((old) => ({
+      ...old,
+      tarefas: user.tarefas.concat(tarefas),
+    }));
   };
 
   return (
     <div>
       <Header name={user.nome} />
       <Link to="/login">Voltar para login</Link>
-      <Button onClick={addNewTask} variant="primary" type="button">
+      <Button onClick={addTaskForm} variant="primary" type="button">
         Adicionar nova tarefa
       </Button>
+      {addTask ? <TaskForm addTasks={addTasks} id={id} email={email} /> : <div />}
       <Tasks tasks={user.tarefas} />
     </div>
   );

@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 // src: https://mongoosejs.com/docs/populate.html
 const taskSchema = mongoose.Schema({
-  author: { type: mongoose.Schema.Types.ObjectId, ref: 'PostUser' },
+  autor: { type: mongoose.Schema.Types.ObjectId, ref: 'PostUser' },
   prioridade: String,
-  titulo: String,
+  nome: String,
   descricao: String,
   dataDeCriacao: {
     type: Date,

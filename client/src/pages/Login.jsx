@@ -9,6 +9,8 @@ import { login } from '../services/api';
 
 const Login = () => {
   const [haveAccount, setHaveAccount] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [userTasks, serUserTasks] = useState([]);
 
   const {
     state, setData, setExplicitField, validate,
@@ -41,11 +43,14 @@ const Login = () => {
   };
 
   const checkInputs = async () => {
-    const data = state.$data;
+    const currData = state.$data;
     validate();
-    const { messageError } = await login(data);
-    if (messageError) return window.alert('user not found');
+    const { data: { user: { _id }, tasks } } = await login(currData);
+    setHaveAccount(false);
+    if (!_id) return window.alert('user not found');
+    setUserId(_id);
     setHaveAccount(true);
+    serUserTasks(tasks);
     return window.alert('user found');
   };
 
@@ -55,7 +60,7 @@ const Login = () => {
         ? (
           <Redirect to={{
             pathname: '/main',
-            state: { email: state.$data.email },
+            state: { tasks: userTasks, email: state.$data.email, id: userId },
           }}
           />
         )
