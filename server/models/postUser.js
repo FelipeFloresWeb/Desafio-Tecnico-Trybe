@@ -9,12 +9,14 @@ const postUser = mongoose.Schema({
     type: Date,
     default: new Date()
   },
-  tasks: [{
+  tarefas: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'taskSchema',
     default: null,
   }],
-});
+},
+// https://stackoverflow.com/questions/13699784/mongoose-v-property-hide
+{ versionKey: false });
 
 const PostUser = mongoose.model('PostUser', postUser);
 

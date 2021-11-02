@@ -1,4 +1,5 @@
 import PostUser from '../models/postUser.js'
+import PostTask from '../models/postTask.js'
 
 export const getUsers = async (req, res) => {
   try {
@@ -13,12 +14,11 @@ export const getUsers = async (req, res) => {
 export const createUser = async (req, res) => {
   const post = req.body
   const { email, name, password } = post;
-  const newUser = new PostUser({ nome: name, email, senha: password  })
+  const newUser = new PostUser({ nome: name, email, senha: password  });
 
   try {
     const getUser = await PostUser.findOne({ email });
 
-    console.log('getuser =', getUser, 'newuser=', newUser);
     if (getUser) return res.status(404).json({message: 'usuario já cadastrado'});
     await newUser.save();
     res.status(201).json(getUser);
@@ -29,13 +29,11 @@ export const createUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { password, email } = req.body
-  try {
-    const user = await PostUser.findOne({senha: password, email}).exec()
-    console.log(user);
-    if (!user) return res.status(404).json({message: 'Usuário não Encontrado'});
+    const user = await PostUser.findOne({senha: password, email});
+    const { _id } = user;
+    const getTasks = await PostTask.find({ autor: _id });
 
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(409).json({message: error.message});
-  }
+    if (!user) return res.status(204).json({message: 'Usuário não Encontrado'});
+
+    return res.status(200).json({ user: user, tasks: getTasks});
 };

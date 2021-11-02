@@ -1,17 +1,31 @@
 import axios from 'axios';
 
+export const deleteTask = async (id) => {
+  const fetchApi = await axios.delete(`http://localhost:4000/delete/${id}`);
+
+  return fetchApi;
+};
+
+export const addTask = async (data) => {
+  const fetchApi = await axios.post('http://localhost:4000/addTask', data);
+
+  return fetchApi;
+};
+
+export const getTasks = async (id) => {
+  const fetchApi = await axios.post('http://localhost:4000/tasks', { id });
+
+  return fetchApi;
+};
+
 export const createUser = async (data) => {
   const fetchApi = await axios.post('http://localhost:4000/create', data);
-  // const response = await fetchApi.data;
+
   return fetchApi;
 };
 
 export const login = async (data) => {
-  try {
-    const fetchApi = await axios.post('http://localhost:4000/login', data);
-    console.log(fetchApi);
-    return fetchApi;
-  } catch (error) {
-    return { messageError: error.message };
-  }
+  const fetchApi = await axios.post('http://localhost:4000/login', data);
+
+  return fetchApi;
 };
