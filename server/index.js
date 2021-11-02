@@ -20,7 +20,7 @@ app.post('/tasks', getTasks);
 app.post('/login', loginUser);
 app.post('/create', createUser);
 app.post('/addTask', addTask);
-app.delete('/delete', deleteTask);
+app.delete('/delete/:id', deleteTask);
 
 //para vizualizar o banco
 app.get('/create', getUsers);

@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+export const deleteTask = async (id) => {
+  const fetchApi = await axios.delete(`http://localhost:4000/delete/${id}`);
+
+  return fetchApi;
+};
+
 export const addTask = async (data) => {
   const fetchApi = await axios.post('http://localhost:4000/addTask', data);
 

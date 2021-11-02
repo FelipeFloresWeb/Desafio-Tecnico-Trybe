@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -27,16 +28,27 @@ const Main = (props) => {
       }));
     };
     mount();
+    return () => {
+      setUser({});
+      setAddTask('');
+    };
   }, []);
 
   const addTaskForm = async () => {
     setAddTask(!addTask);
   };
 
-  const addTasks = async (tarefas) => {
-    await setUser((old) => ({
+  const addTasks = (tarefas) => {
+    setUser((old) => ({
       ...old,
       tarefas: user.tarefas.concat(tarefas),
+    }));
+  };
+
+  const removeTask = (taskId) => {
+    setUser((old) => ({
+      ...old,
+      tarefas: user.tarefas.filter((task) => task._id !== taskId),
     }));
   };
 
@@ -48,7 +60,7 @@ const Main = (props) => {
         Adicionar nova tarefa
       </Button>
       {addTask ? <TaskForm addTasks={addTasks} id={id} email={email} /> : <div />}
-      <Tasks tasks={user.tarefas} />
+      <Tasks removeTask={removeTask} tasks={user.tarefas} />
     </div>
   );
 };

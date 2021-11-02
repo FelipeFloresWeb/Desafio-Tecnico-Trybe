@@ -23,7 +23,7 @@ export const addTask = async (req, res) => {
 };
 
 export const deleteTask = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
   try {
     await PostTask.deleteOne({_id: id });
     res.status(200).json({delete: true});
