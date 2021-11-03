@@ -29,11 +29,10 @@ export const createUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { password, email } = req.body
-    const user = await PostUser.findOne({senha: password, email});
+    const user = await PostUser.findOne({senha: password, email}, { senha: false });
+    if (!user) return res.status(204).json({message: 'Usuário não Encontrado'});
     const { _id } = user;
     const getTasks = await PostTask.find({ autor: _id });
-
-    if (!user) return res.status(204).json({message: 'Usuário não Encontrado'});
 
     return res.status(200).json({ user: user, tasks: getTasks});
 };
