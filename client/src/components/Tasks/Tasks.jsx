@@ -16,7 +16,6 @@ const Tasks = (props) => {
     await initTask(id);
     taskStart(id);
   };
-  console.log(tasks);
 
   return (
     <div>
