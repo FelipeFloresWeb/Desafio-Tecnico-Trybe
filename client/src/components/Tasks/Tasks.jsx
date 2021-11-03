@@ -20,7 +20,7 @@ const Tasks = (props) => {
   return (
     <div>
       {tasks.length < 1
-        ? <h1>Parece que voce não possui nenhuma tarefa pendente :)</h1>
+        ? <h1>Parece que voce não possui nenhuma tarefa :)</h1>
         : tasks.map((task) => (
           <Card key={task._id}>
             <Card.Header as="h5">{`Prioridade: ${task.prioridade.toUpperCase()}`}</Card.Header>
