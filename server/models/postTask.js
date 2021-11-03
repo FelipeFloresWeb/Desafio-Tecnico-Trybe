@@ -11,7 +11,7 @@ const taskSchema = mongoose.Schema({
   nome: String,
   descricao: String,
   dataDeCriacao: {
-    type: Date,
+    type: String,
     default: `${dataAtual - horaAtual}`
   },
   status: {

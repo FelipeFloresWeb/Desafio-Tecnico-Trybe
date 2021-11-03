@@ -1,4 +1,9 @@
 import mongoose from "mongoose";
+import moment from 'moment';
+
+const dataAtual = moment().format('DD-MM-YYYY');
+const horaAtual = moment().format('LTS');
+
 
 // src: https://mongoosejs.com/docs/populate.html
 const postUser = mongoose.Schema({
@@ -6,8 +11,8 @@ const postUser = mongoose.Schema({
   email: String,
   senha: String,
   dataDeCriacao: {
-    type: Date,
-    default: new Date()
+    type: String,
+    default: `${dataAtual - horaAtual}`
   },
   tarefas: [{
     type: mongoose.Schema.Types.ObjectId,
