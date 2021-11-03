@@ -6,7 +6,6 @@ import {
 import { addTask } from '../../services/api';
 
 const TaskForm = (props) => {
-  console.log(props);
   const {
     id,
     email,

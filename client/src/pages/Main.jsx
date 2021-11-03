@@ -10,7 +10,6 @@ import TaskForm from '../components/TaskForm/TaskForm';
 
 const Main = (props) => {
   const { location: { state: { user, tasks } } } = props;
-  console.log(tasks, user);
   const [addTask, setAddTask] = useState(false);
   const [currUser, setUser] = useState({
     userId: user._id,
@@ -18,22 +17,6 @@ const Main = (props) => {
     email: user.email,
     tarefas: tasks,
   });
-
-  // useEffect(() => {
-  //   const mount = async () => {
-  //     const { data } = await getTasks(id);
-  //     setUser((old) => ({
-  //       ...old,
-  //       nome: data.user.nome,
-  //       tarefas: data.tasks,
-  //     }));
-  //   };
-  //   mount();
-  //   return () => {
-  //     setUser({});
-  //     setAddTask('');
-  //   };
-  // }, []);
 
   const addTaskForm = async () => {
     setAddTask(!addTask);
@@ -46,10 +29,43 @@ const Main = (props) => {
     }));
   };
 
-  const removeTask = (taskId) => {
+  const finishTask = (taskId) => {
+    // arr copy
+    const arrTask = currUser.tarefas;
+
+    // take curr task
+    const currTask = arrTask.find((task) => task._id === taskId);
+
+    // take index of task and modify status
+    const taskIndex = arrTask.indexOf(currTask);
+    currTask.status = 'Pronto';
+
+    // remove old task with status='Pendente', and update to status='Em andamento'
+    arrTask.splice(taskIndex, 1, currTask);
+
     setUser((old) => ({
       ...old,
-      tarefas: currUser.tarefas.filter((task) => task._id !== taskId),
+      tarefas: arrTask,
+    }));
+  };
+
+  const taskStart = (taskId) => {
+    // arr copy
+    const arrTask = currUser.tarefas;
+
+    // take curr task
+    const currTask = arrTask.find((task) => task._id === taskId);
+
+    // take index of task and modify status
+    const taskIndex = arrTask.indexOf(currTask);
+    currTask.status = 'Em andamento';
+
+    // remove old task with status='Pendente', and update to status='Em andamento'
+    arrTask.splice(taskIndex, 1, currTask);
+
+    setUser((old) => ({
+      ...old,
+      tarefas: arrTask,
     }));
   };
 
@@ -69,7 +85,7 @@ const Main = (props) => {
             email={currUser.email}
           />
         ) : <div />}
-      <Tasks removeTask={removeTask} tasks={currUser.tarefas} />
+      <Tasks taskStart={taskStart} finishTask={finishTask} tasks={currUser.tarefas} />
     </div>
   );
 };

@@ -46,7 +46,6 @@ const Login = () => {
     const currData = state.$data;
     validate();
     const { data } = await login(currData);
-    console.log(data);
     setHaveAccount(false);
     if (!data) return window.alert('user not found');
     const { user, tasks } = data;

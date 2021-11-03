@@ -1,9 +1,14 @@
-import PostUser from '../models/postUser.js'
-import PostTask from '../models/postTask.js'
+import UserSchema from '../models/userSchema.js'
+import TaskSchema from '../models/taskSchema.js'
+import moment from 'moment';
+
+const dataAtual = moment().format('DD-MM-YYYY');
+const horaAtual = moment().format('LTS');
+const currMoment = `${horaAtual} ${dataAtual}`;
 
 export const getUsers = async (req, res) => {
   try {
-    const getUsers = await PostUser.find();
+    const getUsers = await UserSchema.find();
 
     res.status(200).json(getUsers);
   } catch (error) {
@@ -14,10 +19,10 @@ export const getUsers = async (req, res) => {
 export const createUser = async (req, res) => {
   const post = req.body
   const { email, name, password } = post;
-  const newUser = new PostUser({ nome: name, email, senha: password  });
+  const newUser = new UserSchema({ nome: name, email, dataDeCriacao: currMoment, senha: password  });
 
   try {
-    const getUser = await PostUser.findOne({ email });
+    const getUser = await UserSchema.findOne({ email });
 
     if (getUser) return res.status(404).json({message: 'usuario já cadastrado'});
     await newUser.save();
@@ -29,10 +34,10 @@ export const createUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { password, email } = req.body
-    const user = await PostUser.findOne({senha: password, email}, { senha: false });
+    const user = await UserSchema.findOne({senha: password, email}, { senha: false });
     if (!user) return res.status(204).json({message: 'Usuário não Encontrado'});
     const { _id } = user;
-    const getTasks = await PostTask.find({ autor: _id });
+    const getTasks = await TaskSchema.find({ autor: _id });
 
     return res.status(200).json({ user: user, tasks: getTasks});
 };

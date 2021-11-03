@@ -1,27 +1,28 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import moment from 'moment';
+
+const dataAtual = moment().format('DD-MM-YYYY');
+const horaAtual = moment().format('LTS');
 
 // src: https://mongoosejs.com/docs/populate.html
 const taskSchema = mongoose.Schema({
-  autor: { type: mongoose.Schema.Types.ObjectId, ref: 'PostUser' },
+  autor: { type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema' },
   prioridade: String,
   nome: String,
   descricao: String,
-  dataDeCriacao: {
-    type: Date,
-    default: new Date()
-  },
+  dataDeCriacao: String,
   status: {
     type: String,
-    default: 'Em andamento'
+    default: 'Pendente'
   },
   dataDeConclusao: {
-    type: Date,
+    type: String,
     default: null
   }
 },
 // https://stackoverflow.com/questions/13699784/mongoose-v-property-hide
 { versionKey: false });
 
-const TaskSchema = mongoose.model('taskSchema', taskSchema);
+const TaskSchema = mongoose.model('TaskSchema', taskSchema);
 
 export default TaskSchema;

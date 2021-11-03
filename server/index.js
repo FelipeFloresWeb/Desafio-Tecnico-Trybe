@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { getTasks, getAllTasks, addTask, deleteTask } from './controllers/taskController.js'
+import { getTasks, getAllTasks, addTask, doneTask, initTask } from './controllers/taskController.js'
 import { createUser, getUsers, loginUser } from './controllers/userController.js'
 config();
 
@@ -16,11 +16,14 @@ app.use(bodyParser.urlencoded({limit: '30mb', extended: true}));
 app.use(cors());
 
 // app.get('/', (req, res) => res.redirect(`https://localhost:4000/login`));
-app.post('/tasks', getTasks);
 app.post('/login', loginUser);
 app.post('/create', createUser);
+
+
+app.post('/tasks', getTasks);
 app.post('/addTask', addTask);
-app.delete('/delete/:id', deleteTask);
+app.post('/delete/:id', doneTask);
+app.post('/initTask/:id', initTask);
 
 //para vizualizar o banco
 app.get('/create', getUsers);
