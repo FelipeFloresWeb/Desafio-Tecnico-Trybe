@@ -6,6 +6,7 @@ import {
 import { addTask } from '../../services/api';
 
 const TaskForm = (props) => {
+  console.log(props);
   const {
     id,
     email,
@@ -24,13 +25,17 @@ const TaskForm = (props) => {
       descricao: inputDescription.current.value,
       prioridade: inputPriority.current.value,
     });
-    const { _id } = data;
+    const {
+      _id, nome, status, dataDeCriacao, descricao, prioridade,
+    } = data;
     addTasks({
-      id: _id,
+      _id,
       email,
-      nome: inputTitle.current.value,
-      descricao: inputDescription.current.value,
-      prioridade: inputPriority.current.value,
+      dataDeCriacao,
+      status,
+      nome,
+      descricao,
+      prioridade,
     });
     return addTaskForm();
   };

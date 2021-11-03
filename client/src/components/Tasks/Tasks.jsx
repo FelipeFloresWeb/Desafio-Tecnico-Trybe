@@ -9,7 +9,7 @@ const Tasks = (props) => {
 
   const deleteCurrTask = async (id) => {
     await deleteTask(id);
-    await removeTask(id);
+    removeTask(id);
   };
 
   return (
