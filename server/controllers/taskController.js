@@ -29,13 +29,25 @@ export const addTask = async (req, res) => {
   }
 };
 
-export const deleteTask = async (req, res) => {
+export const initTask = async (req, res) => {
   const { id } = req.params;
-  console.log(id)
+
   try {
-    const deleteTask = await PostTask.deleteOne({_id: id });
-    console.log(deleteTask);
-    res.status(200).json({delete: true});
+    await PostTask.updateOne({_id: id }, { status: 'Em andamento' });
+
+    res.status(200).json({update: true});
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
+};
+
+export const doneTask = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await PostTask.updateOne({_id: id }, { status: 'Pronto' });
+
+    res.status(200).json({done: true});
   } catch (error) {
     res.status(409).json({message: error.message});
   }

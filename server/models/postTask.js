@@ -12,7 +12,7 @@ const taskSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    default: 'Em andamento'
+    default: 'Pendente'
   },
   dataDeConclusao: {
     type: Date,
