@@ -41,24 +41,11 @@ const OrderArrByStatus = (a, b) => {
 };
 
 const OrderArrByTaskCreation = (a, b) => {
-  // const firstHour = a.dataDeCriacao.split(' ')[0].split(':');
-  // const ampm = a.dataDeCriacao.split(' ')[1];
-  // const second = b.dataDeCriacao.split(' ');
-
   // https://ricardo-reis.medium.com/o-m%C3%A9todo-sort-do-array-javascript-482576734e0a
-  const firstDate = new Date(a.dataDeCriacao.split(' ')[2].replace(/-/g, '/')); // https://regexr.com/
-  const secondDate = new Date(b.dataDeCriacao.split(' ')[2].replace(/-/g, '/'));
+  const firstDate = new Date(a.dataDeCriacao);
+  const secondDate = new Date(b.dataDeCriacao);
 
   return firstDate - secondDate;
-  // console.log(first, second);
-
-  // if (first > second) {
-  //   return 1;
-  // }
-  // if (first < second) {
-  //   return -1;
-  // }
-  // return 0;
 };
 
 const OrderTasks = (props) => {
