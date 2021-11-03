@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Header from '../components/Header/Header';
 import Tasks from '../components/Tasks/Tasks';
-// import { getTasks } from '../services/api';
 import TaskForm from '../components/TaskForm/TaskForm';
+import OrderTasks from '../components/OrderTasks/OrderTasks';
 
 const Main = (props) => {
   const { location: { state: { user, tasks } } } = props;
@@ -69,10 +69,19 @@ const Main = (props) => {
     }));
   };
 
+  const sortTasks = (orderedArry) => {
+    console.log(orderedArry);
+    setUser((old) => ({
+      ...old,
+      tarefas: orderedArry,
+    }));
+  };
+
   return (
     <div>
       <Header name={currUser.nome} />
-      <Link to="/login">Voltar para login</Link>
+      <Link to="/login">Logout</Link>
+      <OrderTasks sortTasks={sortTasks} currTasks={currUser.tarefas} />
       <Button onClick={addTaskForm} variant="primary" type="button">
         Adicionar nova tarefa
       </Button>
