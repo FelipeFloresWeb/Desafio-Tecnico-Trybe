@@ -1,5 +1,9 @@
 import PostTask from '../models/postTask.js'
 import PostUser from '../models/postUser.js'
+import moment from 'moment';
+
+const dataAtual = moment().format('DD-MM-YYYY');
+const horaAtual = moment().format('LTS');
 
 export const getAllTasks = async (req, res) => {
     const getTasks = await PostTask.find();
@@ -45,7 +49,7 @@ export const doneTask = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await PostTask.updateOne({_id: id }, { status: 'Pronto' });
+    await PostTask.updateOne({_id: id }, { status: 'Pronto', dataDeConclusao: `${dataAtual - horaAtual}` });
 
     res.status(200).json({done: true});
   } catch (error) {

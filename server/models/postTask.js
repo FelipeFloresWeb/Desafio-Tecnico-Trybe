@@ -1,4 +1,8 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import moment from 'moment';
+
+const dataAtual = moment().format('DD-MM-YYYY');
+const horaAtual = moment().format('LTS');
 
 // src: https://mongoosejs.com/docs/populate.html
 const taskSchema = mongoose.Schema({
@@ -8,7 +12,7 @@ const taskSchema = mongoose.Schema({
   descricao: String,
   dataDeCriacao: {
     type: Date,
-    default: new Date()
+    default: `${dataAtual - horaAtual}`
   },
   status: {
     type: String,
