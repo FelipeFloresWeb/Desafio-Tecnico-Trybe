@@ -35,7 +35,7 @@ export const createUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { password, email } = req.body
     const user = await UserSchema.findOne({senha: password, email}, { senha: false });
-    if (!user) return res.status(204).json({message: 'Usuário não Encontrado'});
+    if (!user) return res.status(401).json({message: 'Usuário não Encontrado'});
     const { _id } = user;
     const getTasks = await TaskSchema.find({ autor: _id });
 
