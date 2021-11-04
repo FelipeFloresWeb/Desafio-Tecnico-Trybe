@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { config } from 'dotenv';
-config();
 
 const environmentVariableUrl = process.env.URL || 'http://localhost:4000';
 
