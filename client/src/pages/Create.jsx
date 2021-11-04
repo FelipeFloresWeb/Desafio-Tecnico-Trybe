@@ -82,7 +82,7 @@ const Login = () => {
 
       <img id="todo-logo" src={todoLogo} alt="To Do Logo" />
       <h1>Cadastro</h1>
-      <Link to="/login">Voltar para login</Link>
+      <Link to="/">Voltar para login</Link>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Nome Completo: </Form.Label>

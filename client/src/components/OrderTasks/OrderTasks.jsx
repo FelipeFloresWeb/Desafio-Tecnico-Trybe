@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
@@ -29,7 +29,6 @@ const getStatusPriority = (status) => {
 const OrderArrByStatus = (a, b) => {
   const first = getStatusPriority(a.status);
   const second = getStatusPriority(b.status);
-  console.log(first, second);
 
   if (first > second) {
     return 1;
@@ -50,19 +49,18 @@ const OrderArrByTaskCreation = (a, b) => {
 
 const OrderTasks = (props) => {
   const { currTasks, sortTasks } = props;
-  const [tasks] = useState(currTasks);
 
   const orderTasks = (orderBy) => {
     if (orderBy === 'name') {
-      const orderByName = tasks.sort(OrderArrByName);
+      const orderByName = currTasks.sort(OrderArrByName);
       sortTasks(orderByName);
     }
     if (orderBy === 'status') {
-      const orderByStatus = tasks.sort(OrderArrByStatus);
+      const orderByStatus = currTasks.sort(OrderArrByStatus);
       sortTasks(orderByStatus);
     }
     if (orderBy === 'dataDeCriação') {
-      const orderByTaskCreation = tasks.sort(OrderArrByTaskCreation);
+      const orderByTaskCreation = currTasks.sort(OrderArrByTaskCreation);
       sortTasks(orderByTaskCreation);
     }
   };

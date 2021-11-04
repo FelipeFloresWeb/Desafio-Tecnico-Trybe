@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import moment from 'moment';
+const mongoose = require('mongoose');
+const moment = require('moment');
 
 const dataAtual = moment().format('DD-MM-YYYY');
 const horaAtual = moment().format('LTS');
@@ -25,4 +25,4 @@ const taskSchema = mongoose.Schema({
 
 const TaskSchema = mongoose.model('TaskSchema', taskSchema);
 
-export default TaskSchema;
+module.exports = TaskSchema;

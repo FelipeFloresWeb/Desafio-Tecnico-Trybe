@@ -1,12 +1,12 @@
-import UserSchema from '../models/userSchema.js'
-import TaskSchema from '../models/taskSchema.js'
-import moment from 'moment';
+const UserSchema = require('../models/userSchema.js');
+const TaskSchema = require('../models/taskSchema.js');
+const moment = require('moment');
 
 const dataAtual = moment().format('DD-MM-YYYY');
 const horaAtual = moment().format('LTS');
 const currMoment = `${horaAtual} ${dataAtual}`;
 
-export const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
     const getUsers = await UserSchema.find();
 
@@ -16,7 +16,7 @@ export const getUsers = async (req, res) => {
   }
 };
 
-export const createUser = async (req, res) => {
+const createUser = async (req, res) => {
   const post = req.body
   const { email, name, password } = post;
   const newUser = new UserSchema({ nome: name, email, dataDeCriacao: currMoment, senha: password  });
@@ -32,12 +32,23 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
   const { password, email } = req.body
+  
+  try {
     const user = await UserSchema.findOne({senha: password, email}, { senha: false });
-    if (!user) return res.status(204).json({message: 'Usuário não Encontrado'});
+    if (!user) return res.json({message: 'Usuário não Encontrado'});
     const { _id } = user;
     const getTasks = await TaskSchema.find({ autor: _id });
 
     return res.status(200).json({ user: user, tasks: getTasks});
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
+};
+
+module.exports = {
+  getUsers,
+  createUser,
+  loginUser,
 };

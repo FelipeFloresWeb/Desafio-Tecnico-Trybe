@@ -1,19 +1,19 @@
-import TaskSchema from '../models/taskSchema.js'
-import UserSchema from '../models/userSchema.js'
-import moment from 'moment';
+const TaskSchema = require('../models/taskSchema.js');
+const UserSchema = require('../models/userSchema.js');
+const moment = require('moment');
 
 const dataAtual = moment().format('DD-MM-YYYY');
 const horaAtual = moment().format('LTS');
 const currMoment = `${horaAtual} ${dataAtual}`;
 
-export const getAllTasks = async (req, res) => {
+const getAllTasks = async (req, res) => {
     const getTasks = await TaskSchema.find();
 
     if (!getTasks) return res.status(204).json({ message: 'user have not any task yet' });
     return res.status(200).json(getTasks);
 };
 
-export const getTasks = async (req, res) => {
+const getTasks = async (req, res) => {
   const { id } = req.body;
     const getUser = await UserSchema.findOne({ _id: id });
     const getTasks = await TaskSchema.find({ autor: id });
@@ -22,7 +22,7 @@ export const getTasks = async (req, res) => {
     return res.status(200).json({ user: getUser, tasks: getTasks});
 };
 
-export const addTask = async (req, res) => {
+const addTask = async (req, res) => {
   const data = req.body;
   const { email, id, prioridade, nome, descricao } = data;
   const newUser = new TaskSchema({autor: id, prioridade, nome, dataDeCriacao: currMoment, descricao });
@@ -34,7 +34,7 @@ export const addTask = async (req, res) => {
   }
 };
 
-export const initTask = async (req, res) => {
+const initTask = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -46,7 +46,7 @@ export const initTask = async (req, res) => {
   }
 };
 
-export const doneTask = async (req, res) => {
+const doneTask = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -56,4 +56,12 @@ export const doneTask = async (req, res) => {
   } catch (error) {
     res.status(409).json({message: error.message});
   }
+};
+
+module.exports = {
+  getAllTasks,
+  getTasks,
+  addTask,
+  initTask,
+  doneTask
 };
