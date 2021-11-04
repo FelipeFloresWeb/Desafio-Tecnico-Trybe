@@ -1,9 +1,9 @@
 // src: https://github.com/tryber/sd-010-a-cookmaster/pull/22
-
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
 require('dotenv').config();
+const server = require('../index');
 
 
 const PORT = process.env.PORT || 4000;
@@ -11,9 +11,8 @@ const PORT = process.env.PORT || 4000;
 chai.use(chaiHttp);
 const { expect } = chai;
 
-// const server = require(`http://localhost:${PORT}`);
 
-const { MongoClient } = require('mongodb');
+const { Mongoose } = require('mongoose');
 const { getConnection } = require('./helpers/connectionMock');
 
 describe('POST /login', () => {
@@ -25,13 +24,13 @@ describe('POST /login', () => {
   });
 
   after(() => {
-    MongoClient.connect.restore();
+    Mongoose.connect.restore();
   })
 
   describe('Será validado que o campo "email" é obrigatório', () => {
     let response;
     before(async () => {
-      response = await chai.request(`http://localhost:${PORT}`)
+      response = await chai.request(server)
       .post('/login')
       .send({password: '12345678'});
     });

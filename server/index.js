@@ -1,12 +1,12 @@
 // src: "Full Stack MERN Project" https://www.youtube.com/watch?v=ngc9gnGgUdA&t=7s
 
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import { config } from 'dotenv';
-import { getTasks, getAllTasks, addTask, doneTask, initTask } from './controllers/taskController.js'
-import { createUser, getUsers, loginUser } from './controllers/userController.js'
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const { config } = require('dotenv');
+const { getTasks, getAllTasks, addTask, doneTask, initTask } = require('./controllers/taskController.js');
+const { createUser, getUsers, loginUser } = require('./controllers/userController.js');
 config();
 
 const app = express();

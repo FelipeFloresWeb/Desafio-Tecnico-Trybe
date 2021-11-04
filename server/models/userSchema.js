@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 // src: https://mongoosejs.com/docs/populate.html
 const userSchema = mongoose.Schema({
@@ -17,4 +17,4 @@ const userSchema = mongoose.Schema({
 
 const UserSchema = mongoose.model('UserSchema', userSchema);
 
-export default UserSchema;
+module.exports = UserSchema;
