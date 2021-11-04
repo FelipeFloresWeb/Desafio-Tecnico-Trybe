@@ -52,6 +52,7 @@ utilizando como serviço de "Cloud" o "mongoDB Atlas".</h3>
 * `npm install`
 6. Após o término da instalação rode o servidor:
 * `node index.js`
+
 ou para rodar em modo de desenvolvimento:
 * `npm run debug`
 7. Entre na pasta de front-end e inicie a aplicação:
