@@ -15,7 +15,6 @@ app.use(bodyParser.json({limit: '30mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true}));
 app.use(cors());
 
-app.get('/', (req, res) => res.redirect(`https://localhost:4000/login`));
 app.post('/login', loginUser);
 app.post('/create', createUser);
 
