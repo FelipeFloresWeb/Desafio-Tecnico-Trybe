@@ -1,5 +1,5 @@
 <h1> Desafio-Tecnico-Trybe-FULL-STACK-TODOLIST </h1>
-<br>
+
 
 <h2> Bem vindo ao repostorio Full Stack Todo List.</h2>
 <h3> Esta aplicação tem como objetivo organizar tarefas para usuários específicos onde voce pode: adicionar, remover ou atualizar uma determinada
@@ -58,3 +58,8 @@ ou para rodar em modo de desenvolvimento:
 7. Entre na pasta de front-end e inicie a aplicação:
 * `cd ../client`
 * `npm start`
+
+<h1>Deploy:</h1>
+<a href="https://nodejs.org/en/" target="_blank">
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/heroku/heroku-original-wordmark.svg" alt="node" width="100" height="100"/>
+</a>
