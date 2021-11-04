@@ -56,4 +56,5 @@ utilizando como serviço de "Cloud" o "mongoDB Atlas".</h3>
 ou para rodar em modo de desenvolvimento:
 * `npm run debug`
 7. Entre na pasta de front-end e inicie a aplicação:
+* `cd ../client`
 * `npm start`
