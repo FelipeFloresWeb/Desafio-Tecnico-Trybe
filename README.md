@@ -60,6 +60,6 @@ ou para rodar em modo de desenvolvimento:
 * `npm start`
 
 <h1>Deploy:</h1>
-<a href="https://nodejs.org/en/" target="_blank">
+<a href="http://first-todo-list-frontend.herokuapp.com/" target="_blank">
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/heroku/heroku-original-wordmark.svg" alt="node" width="100" height="100"/>
 </a>
