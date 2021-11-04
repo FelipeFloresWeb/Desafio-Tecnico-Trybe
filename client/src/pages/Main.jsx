@@ -80,7 +80,7 @@ const Main = (props) => {
   return (
     <div>
       <Header name={currUser.nome} />
-      <Link to="/login">Logout</Link>
+      <Link to="/">Logout</Link>
       <OrderTasks sortTasks={sortTasks} currTasks={currUser.tarefas} />
       <Button onClick={addTaskForm} variant="primary" type="button">
         Adicionar nova tarefa
