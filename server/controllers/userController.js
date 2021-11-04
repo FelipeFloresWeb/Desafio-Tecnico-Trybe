@@ -34,12 +34,17 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   const { password, email } = req.body
+  
+  try {
     const user = await UserSchema.findOne({senha: password, email}, { senha: false });
-    if (!user) return res.status(401).json({message: 'Usuário não Encontrado'});
+    if (!user) return res.json({message: 'Usuário não Encontrado'});
     const { _id } = user;
     const getTasks = await TaskSchema.find({ autor: _id });
 
     return res.status(200).json({ user: user, tasks: getTasks});
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
 };
 
 module.exports = {
