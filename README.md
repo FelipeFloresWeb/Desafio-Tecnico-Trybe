@@ -59,7 +59,7 @@ ou para rodar em modo de desenvolvimento:
 * `cd ../client`
 * `npm start`
 
-<h1>Deploy:</h1>
+<h1>Experimente a aplicação:</h1>
 <a href="http://first-todo-list-frontend.herokuapp.com/" target="_blank">
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/heroku/heroku-original-wordmark.svg" alt="node" width="100" height="100"/>
 </a>
