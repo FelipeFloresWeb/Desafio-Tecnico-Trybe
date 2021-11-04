@@ -1,37 +1,41 @@
 import axios from 'axios';
+import { config } from 'dotenv';
+config();
+
+const environmentVariableUrl = process.env.URL || 'http://localhost:4000';
 
 export const initTask = async (id) => {
-  const fetchApi = await axios.post(`http://localhost:4000/initTask/${id}`);
+  const fetchApi = await axios.post(`${environmentVariableUrl}/initTask/${id}`);
 
   return fetchApi;
 };
 
 export const doneTask = async (id) => {
-  const fetchApi = await axios.post(`http://localhost:4000/delete/${id}`);
+  const fetchApi = await axios.post(`${environmentVariableUrl}/delete/${id}`);
 
   return fetchApi;
 };
 
 export const addTask = async (data) => {
-  const fetchApi = await axios.post('http://localhost:4000/addTask', data);
+  const fetchApi = await axios.post('/addTask', data);
 
   return fetchApi;
 };
 
 export const getTasks = async (id) => {
-  const fetchApi = await axios.post('http://localhost:4000/tasks', { id });
+  const fetchApi = await axios.post(`${environmentVariableUrl}/tasks`, { id });
 
   return fetchApi;
 };
 
 export const createUser = async (data) => {
-  const fetchApi = await axios.post('http://localhost:4000/create', data);
+  const fetchApi = await axios.post(`${environmentVariableUrl}/create`, data);
 
   return fetchApi;
 };
 
 export const login = async (data) => {
-  const fetchApi = await axios.post('http://localhost:4000/login', data);
+  const fetchApi = await axios.post(`${environmentVariableUrl}/login`, data);
 
   return fetchApi;
 };
