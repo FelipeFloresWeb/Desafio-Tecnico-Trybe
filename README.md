@@ -67,7 +67,7 @@ O servidor ira rodar localmente somente se vc já tiver um serviço de cloud cad
 * `npm start`
 
 ### 	:bangbang:Importante:bangbang:
-#### 	:construction: Teste locais do app não estão funcionando...	:construction:
+#### 	:construction: Teste locais do app não estão funcionando...	(Em desenvolvimento...):construction:
 #### Existe dentro da pasta server uma pasta chamada "testes", onde ela se encontra inicialmente com o sistema de testes pré-implantado porém não funcional, ao rodar o comando 'npm test' retorna o seguinte erro no console: "before is not defined"; Ou seja, o sistema de teste não consegue identificar o método "before", Não tenho a solução para este problema no momento, mas assim que possível estarei buscando pela solução na documentação e ou fóruns sobre jest tests :nerd_face:.
 
 <h1>Experimente a aplicação:</h1>
