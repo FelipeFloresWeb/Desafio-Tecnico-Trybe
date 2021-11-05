@@ -66,6 +66,10 @@ O servidor ira rodar localmente somente se vc já tiver um serviço de cloud cad
 * `cd ../client`
 * `npm start`
 
+### 	:bangbang:Importante:bangbang:
+#### 	:construction: Teste locais do app não estão funcionando...	:construction:
+#### Existe dentro da pasta server uma pasta chamada "testes", onde ela se encontra inicialmente implementado o sistema para testar a aplicação, porém ao dar o comando npm test retorna o erro que "before is not define", ou seja o sistema de teste não consegue identificar o método "before".
+
 <h1>Experimente a aplicação:</h1>
 <a href="http://first-todo-list-frontend.herokuapp.com/" target="_blank">
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/heroku/heroku-original-wordmark.svg" alt="node" width="100" height="100"/>
