@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// const URL = 'https://first-todo-list-backend.herokuapp.com';
+const URL = 'https://first-todo-list-backend.herokuapp.com';
 
 // Para Desenvolvimento do backend utilize esta variável
-const URL = 'http://localhost:4000';
+// const URL = 'http://localhost:4000';
 
 export const initTask = async (id) => {
   const fetchApi = await axios.post(`${URL}/initTask/${id}`);
