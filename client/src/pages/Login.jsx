@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import {
+  Form, Button, Row, Container, Col,
+} from 'react-bootstrap';
 import { useValidator } from 'react-joi'; // src: https://www.npmjs.com/package/react-joi
 import todoLogo from '../images/todoLogo.png';// src Image: https://images-na.ssl-images-amazon.com/images/I/41da3NERJ4L.png
 import schema from '../utils/loginValidation';
@@ -68,31 +70,39 @@ const Login = () => {
         )
         : (
           <>
-            <img id="todo-logo" src={todoLogo} alt="To Do Logo" />
-            <h1>Lista de Tarefas da empresa</h1>
-            <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email: </Form.Label>
-                <Form.Control onChange={updateEmail} onBlur={() => setExplicitField('email', true)} type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted">Nunca forneça seu email a ninguém.</Form.Text>
-              </Form.Group>
-              {state.$errors.email.map((data) => data.$message).join(',')}
+            <Container>
+              <Row className="justify-content-md-center">
+                <img id="todo-logo" style={{ width: '30%' }} src={todoLogo} alt="To Do Logo" />
+                <Row className="justify-content-md-center">
+                  <Col md="auto"><h1>Lista de Tarefas da empresa</h1></Col>
+                </Row>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Senha: </Form.Label>
-                <Form.Control onChange={updatePassword} onBlur={() => setExplicitField('password', true)} type="password" placeholder="Password" />
-              </Form.Group>
-              {state.$errors.password.map((data) => data.$message).join(',')}
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label className="justify-content-md-center">Email: </Form.Label>
+                    <Form.Control onChange={updateEmail} onBlur={() => setExplicitField('email', true)} type="email" placeholder="Enter email" />
+                    <Form.Text className="text-muted">Nunca forneça seu email a ninguém.</Form.Text>
+                  </Form.Group>
+                  {state.$errors.email.map((data) => data.$message).join(',')}
 
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
-              <Link to="/create">Não possui Cadastro? Clique aqui e cadastre-se agora!</Link>
-              <br />
-              <Button onClick={checkInputs} variant="primary" type="button">
-                Submit
-              </Button>
-            </Form>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Senha: </Form.Label>
+                    <Form.Control onChange={updatePassword} onBlur={() => setExplicitField('password', true)} type="password" placeholder="Password" />
+                  </Form.Group>
+                  {state.$errors.password.map((data) => data.$message).join(',')}
+
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check type="checkbox" label="Check me out" />
+                  </Form.Group>
+                  <Link to="/create">Não possui Cadastro? Clique aqui e cadastre-se agora!</Link>
+                  <br />
+                  <Button onClick={checkInputs} variant="primary" type="button">
+                    Submit
+                  </Button>
+                </Form>
+
+              </Row>
+            </Container>
           </>
         ) }
 
