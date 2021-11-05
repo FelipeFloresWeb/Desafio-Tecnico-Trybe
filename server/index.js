@@ -5,29 +5,33 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { config } = require('dotenv');
-const { getTasks, addTask, doneTask, initTask } = require('./controllers/taskController.js');
-const { createUser, loginUser } = require('./controllers/userController.js');
+const {
+  getTasks, addTask, doneTask, initTask,
+} = require('./controllers/taskController');
+
+const { createUser, loginUser } = require('./controllers/userController');
+
 config();
 
 const app = express();
 
-app.use(bodyParser.json({limit: '30mb', extended: true}));
-app.use(bodyParser.urlencoded({limit: '30mb', extended: true}));
+app.use(bodyParser.json({ limit: '30mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 
+// user routes
 app.post('/login', loginUser);
 app.post('/create', createUser);
 
+// task routes
 app.post('/tasks', getTasks);
 app.post('/addTask', addTask);
 app.post('/delete/:id', doneTask);
 app.post('/initTask/:id', initTask);
 
+app.all('*', (_req, res) => res.json({ message: 'Esta aplicação não possui esta rota' }));
 
-
-app.all('*', (_req, res) => res.json({ message: 'Esta aplicação não possui esta rota' }))
-
-const CONNECTION_URL = process.env.CONNECTION_URL;
+const { CONNECTION_URL } = process.env;
 
 const PORT = process.env.PORT || 4000;
 

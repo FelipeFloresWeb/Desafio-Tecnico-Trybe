@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
-
-const dataAtual = moment().format('DD-MM-YYYY');
-const horaAtual = moment().format('LTS');
 
 // src: https://mongoosejs.com/docs/populate.html
 const taskSchema = mongoose.Schema({
@@ -13,12 +9,12 @@ const taskSchema = mongoose.Schema({
   dataDeCriacao: String,
   status: {
     type: String,
-    default: 'Pendente'
+    default: 'Pendente',
   },
   dataDeConclusao: {
     type: String,
-    default: null
-  }
+    default: null,
+  },
 },
 // https://stackoverflow.com/questions/13699784/mongoose-v-property-hide
 { versionKey: false });
