@@ -10,9 +10,9 @@ utilizando como serviço de "Cloud" o "mongoDB Atlas".</h3>
 <h3>MERN é uma sigla que engloba diferentes tecnologias que compõe o Back-end de uma aplicação web.</h3>
 <ul>
 <li>(M) MongoDB é uma base de dados não relacional.</li>
-<li>(E)  Express é o framework de back-end onde você construirá sua aplicação web.</li>
-<li>(R)  React é um framework que facilita a programação do front-end usando javascript.</li>
-<li>(N)  Node.JS é um ambiente de execução de código Javascript.</li>
+<li>(E) Express é o framework de back-end onde você construirá sua aplicação web.</li>
+<li>(R) React é um framework que facilita a programação do front-end usando javascript.</li>
+<li>(N) Node.JS é um ambiente de execução de código Javascript.</li>
 </ul>
 <h3>Tecnologias Utilizadas:</h3>
 
@@ -36,6 +36,8 @@ utilizando como serviço de "Cloud" o "mongoDB Atlas".</h3>
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg" alt="bootstrap" width="100" height="100"/>
   </a>
 </p>
+
+## Este repositório contém 3 branchs, se quiser clonar os arquivos de front-end e back-end separadamente basta escolher a branch específica.
 
 ## Como Clonar e Utilizar este projeto?
 
