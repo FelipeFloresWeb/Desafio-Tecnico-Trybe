@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import {
+  Form, Button, Container, Row, Col,
+} from 'react-bootstrap';
 import { useValidator } from 'react-joi'; // src: https://www.npmjs.com/package/react-joi
 import todoLogo from '../images/todoLogo.png';// src Image: https://images-na.ssl-images-amazon.com/images/I/41da3NERJ4L.png
 import schema from '../utils/createValidation';
@@ -78,9 +80,14 @@ const Login = () => {
 
   return (
     <div>
-
-      <img id="todo-logo" src={todoLogo} alt="To Do Logo" />
-      <h1>Cadastro</h1>
+      <Container>
+        <Row className="justify-content-md-center">
+          <img id="todo-logo" style={{ width: '30%' }} src={todoLogo} alt="To Do Logo" />
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto"><h1>Cadastro</h1></Col>
+        </Row>
+      </Container>
       <Link to="/">Voltar para login</Link>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicName">
