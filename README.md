@@ -3,8 +3,7 @@
 
 <h2> Bem vindo ao repostorio Full Stack Todo List.</h2>
 <h3> Esta aplicação tem como objetivo organizar tarefas para usuários específicos onde voce pode: adicionar, remover ou atualizar uma determinada
-tarefa e armazenar estas informações no banco de dados, além de ser possível também a criação de novos usuários, isso tudo através da "Stack" MERN,
-utilizando como serviço de "Cloud" o "mongoDB Atlas".</h3>
+tarefa e armazenar estas informações no banco de dados, além de ser possível também a criação de novos usuários, isso tudo através da "Stack" MERN.</h3>
 
 <h2> O que é MERN </h2>
 <h3>MERN é uma sigla que engloba diferentes tecnologias que compõe o Back-end de uma aplicação web.</h3>
