@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { config } from 'dotenv';
+
+config();
 
 const URL = 'https://first-todo-list-backend.herokuapp.com';
 
