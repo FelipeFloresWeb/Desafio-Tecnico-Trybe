@@ -57,6 +57,12 @@ utilizando como serviço de "Cloud" o "mongoDB Atlas".</h3>
 
 ou para rodar em modo de desenvolvimento:
 * `npm run debug`
+
+### ATENÇÃO :bangbang:
+O servidor ira rodar localmente somente se vc já tiver um serviço de cloud cadastrado como por exemplo:<a href="https://www.mongodb.com/atlas/database" target="_blank"> MongoDB Atlas</a>
+
+<p>Após isso adicione adicione na raiz da paste server uma variável de ambiente (arquivo .env) com a chave 'CONNECTION_URL' e o valor com a key de seu serviço de Cloud.</p>
+
 7. Entre na pasta de front-end e inicie a aplicação:
 * `cd ../client`
 * `npm start`
