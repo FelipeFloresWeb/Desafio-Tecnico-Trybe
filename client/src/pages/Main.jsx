@@ -70,7 +70,6 @@ const Main = (props) => {
   };
 
   const sortTasks = (orderedArry) => {
-    console.log(orderedArry);
     setUser((old) => ({
       ...old,
       tarefas: orderedArry,

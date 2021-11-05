@@ -69,7 +69,6 @@ const Login = () => {
     try {
       if (password !== repeatPassword) return window.alert('As senhas devem ser identicas');
       const { status } = await createUser({ name, email, password });
-      console.log(status);
       if (!status || status !== 201) return window.alert('Usuário já cadastrado');
       return window.alert('Usuário cadastrado com sucesso');
     } catch (error) {
